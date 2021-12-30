@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  web:
+    build: ./app
+    volumes:
+      - ${APPDATA_PATH}:/appdata/
+    environment:
+      - DATABASE_URI=sqlite:////appdata/todo.db
+  nginx:
+    build: ./nginx
+    volumes: 
+        - ./static:/appdata/static:ro
+    ports:
+        - 80:80
